@@ -29,7 +29,7 @@ public class CalendarModifyService {
         calendar = Calendar.builder()
                 .category(modify.getUpdated(calendar.getCategory(), request.getCategory()))
                 .date(calendar.getDate())
-                .isExercise(modify.getUpdated(calendar.isExercise(), request.isExercise()))
+                .isExercise(request.isExercise())
                 .build();
 
         calendarRepository.save(calendar);
