@@ -12,23 +12,30 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class CalendarSaveService {
 
     private static final Logger log = LoggerFactory.getLogger(CalendarSaveService.class);
     private final CalendarRepository calendarRepository;
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Transactional
-    public CalendarResponse execute(CalendarDataRequest request) {
+    public CalendarResponse execute(CalendarDataRequest request) throws ParseException {
 
-        calendarRepository.findById(request.getDate()).ifPresent(m -> {
+        Date date = format.parse(request.getDate());
+
+        calendarRepository.findById(date).ifPresent(m -> {
             throw CalendarAlreadyExistsByDateException.EXCEPTION;
         });
 
         Calendar calendar = Calendar.builder()
                 .category(request.getCategory())
-                .date(request.getDate())
+                .date(date)
                 .isExercise(request.isExercise())
                 .build();
 

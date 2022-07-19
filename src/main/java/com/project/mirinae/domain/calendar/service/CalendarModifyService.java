@@ -12,19 +12,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class CalendarModifyService {
 
     private static final Logger log = LoggerFactory.getLogger(CalendarModifyService.class);
     private final CalendarRepository calendarRepository;
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     @Transactional
-    public CalendarResponse execute(CalendarDataRequest request) {
+    public CalendarResponse execute(CalendarDataRequest request) throws ParseException {
+
+        Date date = format.parse(request.getDate());
 
         ModifyUtil<String> modify = new ModifyUtil<>();
 
-        Calendar calendar = calendarRepository.getReferenceById(request.getDate());
+        Calendar calendar = calendarRepository.getReferenceById(date);
 
         calendar = Calendar.builder()
                 .category(modify.getUpdated(calendar.getCategory(), request.getCategory()))

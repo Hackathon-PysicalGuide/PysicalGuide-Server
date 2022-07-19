@@ -1,5 +1,6 @@
 package com.project.mirinae.domain.calendar.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.util.Date;
 public class Calendar {
 
     @Id
+    @JsonFormat(locale="zh", timezone = "GMT+8", pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private Date date;
 
     private String category;

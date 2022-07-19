@@ -12,7 +12,7 @@ public class CalendarDataRequest {
 
     private final String category;
 
-    private final Date date;
+    private final String date;
 
     private final boolean isExercise;
 

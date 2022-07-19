@@ -11,16 +11,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Service
 @RequiredArgsConstructor
 public class CalendarInquiryService {
 
     private static final Logger log = LoggerFactory.getLogger(CalendarInquiryService.class);
     private final CalendarRepository calendarRepository;
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-    public CalendarResponse execute(CalendarInquiryRequest request) {
+    public CalendarResponse execute(String date) throws ParseException {
 
-        Calendar found = calendarRepository.findById(request.getDate()).orElseThrow(() -> {
+        Date newDate = format.parse(date);
+
+        Calendar found = calendarRepository.findById(newDate).orElseThrow(() -> {
             throw CalendarNotFoundException.EXCEPTION;
         });
 
