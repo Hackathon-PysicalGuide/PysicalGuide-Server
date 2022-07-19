@@ -44,7 +44,7 @@ public class ManualController {
     }
 
     @GetMapping("/category")
-    public ManualDataResponse manualCategoryInquiry(
+    public ManualListReponse manualCategoryInquiry(
             @RequestParam("search-by") String searchBy
     ) {
         return manualCategoryInquiryService.execute(searchBy);

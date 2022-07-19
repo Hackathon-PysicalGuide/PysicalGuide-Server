@@ -1,7 +1,7 @@
 package com.project.mirinae.domain.manual.service;
 
 import com.project.mirinae.domain.manual.entity.Manual;
-import com.project.mirinae.domain.manual.exception.ManualNotFoundException;
+import com.project.mirinae.domain.manual.exception.ManualNotFoundByTitleException;
 import com.project.mirinae.domain.manual.presentation.dto.request.ManualModifyRequest;
 import com.project.mirinae.domain.manual.presentation.dto.response.ManualDataResponse;
 import com.project.mirinae.domain.manual.presentation.dto.response.ManualResponse;
@@ -23,7 +23,7 @@ public class ManualModifyService {
 
         manualRepository.findById(idx)
                 .orElseThrow(() -> {
-                    throw ManualNotFoundException.EXCEPTION;
+                    throw ManualNotFoundByTitleException.EXCEPTION;
                 });
 
         ModifyUtil<String> modify = new ModifyUtil<>();
