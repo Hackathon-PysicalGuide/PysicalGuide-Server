@@ -34,8 +34,8 @@ public class ManualCategoryInquiryService {
                         .title(it.getTitle())
                         .content(it.getContent())
                         .category(it.getCategory())
-                        .build()).collect(Collectors.toList()
-        );
+                        .build())
+                .collect(Collectors.toList());
 
         log.info("ManualCategoryInquiry Success!!");
 

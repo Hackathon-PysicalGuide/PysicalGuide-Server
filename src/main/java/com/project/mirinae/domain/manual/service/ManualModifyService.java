@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +20,7 @@ public class ManualModifyService {
     private static final Logger log = LoggerFactory.getLogger(ManualModifyService.class);
     private final ManualRepository manualRepository;
 
+    @Transactional
     public ManualDataResponse execute(int idx, ManualModifyRequest request) {
 
         manualRepository.findById(idx)
