@@ -1,14 +1,13 @@
 package com.project.mirinae.domain.manual.entity;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @Table(name = "manual")
 public class Manual {
 
@@ -24,14 +23,6 @@ public class Manual {
 
     @Builder
     public Manual(String title, String content, String category) {
-        this.title = title;
-        this.content = content;
-        this.category = category;
-    }
-
-    @Builder
-    public Manual(int idx, String title, String content, String category) {
-        this.idx = idx;
         this.title = title;
         this.content = content;
         this.category = category;

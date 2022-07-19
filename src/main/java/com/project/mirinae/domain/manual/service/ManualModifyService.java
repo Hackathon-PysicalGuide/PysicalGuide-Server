@@ -33,6 +33,7 @@ public class ManualModifyService {
         Manual manual = manualRepository.getReferenceById(idx);
 
         manual = Manual.builder()
+                .idx(idx)
                 .title(modify.getUpdated(manual.getTitle(), request.getTitle()))
                 .content(modify.getUpdated(manual.getContent(), request.getContent()))
                 .category(modify.getUpdated(manual.getCategory(), request.getCategory()))
